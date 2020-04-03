@@ -1,0 +1,72 @@
+\documentclass[11pt]{report}
+\usepackage[german, english]{babel}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{xifthen}
+\usepackage{xstring}			% to check content of strings in xifthen
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{epstopdf}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{subfig}
+%\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{fixltx2e}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
+\usepackage{color}
+
+%SetFonts
+
+%SetFonts
+
+
+\title{DBI Zusammenfassung}
+\author{Leon Schlömmer}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+
+\tableofcontents
+
+\include{Content/Modellierung}
+\include{Content/Normalisierung}
+\include{Content/DDL}
+\include{Content/DCL}
+\include{Content/DML}
+\include{Content/PLSQL}
+\include{Content/Gleichzeitigkeit}
+\include{Content/Indizes}
+\include{Content/Projektportierung}
+\include{Content/Datenbanktuning}
+\include{Content/Datawarehousing}
+\include{Content/OracleAufbau}
+\include{Content/Integritaet}
+\include{Content/Trigger}
+\include{Content/JPA}
+\include{Content/Apex}
+\include{Content/VerteilteDB}
+\include{Content/OracleNet}
+\include{Content/XML}
+\include{Content/OOORDBs}
+\include{Content/Datenbankentwurf}
+\include{Content/DataAnalytics}
+\include{Content/Docker}
+\include{Content/Baume}
+\include{Content/NoSql}
+
+\end{document}  
