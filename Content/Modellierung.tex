@@ -8,7 +8,7 @@ Im Hinblick auf die Datenmodellierung eignen sich folgende Ansätze:
 \paragraph{Konzeptuelles Datenmodell}
 Beschreibt die globale logische Struktur aller Daten Implementierungs-unabhängig und stellt diese in einer systematischen Form dar.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{Content/images/modellierung/konzeptionell.png}
     \caption{Konzeptuelles Datenmodell}
@@ -18,7 +18,7 @@ Beschreibt die globale logische Struktur aller Daten Implementierungs-unabhängi
  \paragraph{Logisches Datenmodell}
  Auf die spätere Implementierung ausgerichtetes Datenmodell, das die Daten für den späteren Einsatz bereits vorstrukturiert.
 
- \begin{figure}[h]
+ \begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{Content/images/modellierung/logisch.png}
     \caption{Logisches Datenmodell}
@@ -41,7 +41,7 @@ Ein Modell ist ein \emph{vereinfachtes Abbild der Wirklichkeit.} Zur Beschreibun
 
 Das hierarchische Datenmodell kennen wir vom Dateisystem unserer Festplatte (Laufwerksbuchstabe, Ordner, Dateien). Dieses Modell wird auch „Baumstruktur“ genannt. Ganz links (oder oben) befindet sich die Wurzel (Root). Von ihr sind alle Objekte abhängig, die weitere abhängige Objekte haben können. In der betriebswirtschaftlichen Lehre ist es mit einer Stablinienorganisation vergleichbar. Das hierarchische Datenmodell war früher ein sehr gebräuchliches Modell, deshalb bildet es die Grundlage älterer Datenbanksysteme.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{Content/images/modellierung/stablinien.png}
     \caption{Stablinienorganisation}
@@ -57,7 +57,7 @@ Es dient als Grundlage vieler Datenbanksysteme. Die drei Datenbanksprachen DML, 
 Das Netzwerk Datenbankmodell besitzt keine strenge Hierarchie. Ein Datenfeld besteht aus einem Namen und einem Wert.
 Es sind m:n Beziehungen möglich, d.h. ein Datensatz kann mehrere Vorgänger haben. Des Weiteren können auch mehrere Datensätze an erster Stelle stehen. Der Vorteil dieses Modells ist, das es unterschiedliche Suchwege als Lösungsweg angibt, was natürlich auch zu Problemen führen kann, wenn der Entwickler genau einen Lösungsweg benutzen will. Auch die Übersichtlichkeit verringert sich, wenn das Modell ständig weiter wächst.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.75\textwidth]{Content/images/modellierung/netzwerk.png}
     \caption{Netzwerk Datenmodell}
@@ -93,7 +93,7 @@ Als Entität wird in der Datenmodellierung ein eindeutig zu bestimmendes Objekt 
 
 Jede Entität besitzt eine bestimmbare Anzahl an Attributen (Ausprägungen bzw. Eigenschaften), die sich eindeutig von anderen Entitäten des gleichen Entitätstyps abgrenzen. Eine Eigenschaft ist ein konkreter Attributwert, den ein zuvor definiertes Attribut annehmen kann. Die Attribute stellen einen „Bauplan“ dar, der eine abstrakte Abbildung der Wirklichkeit ist.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.4\textwidth]{Content/images/modellierung/entity.png}
     \caption{Attribute einer Entity}
@@ -130,7 +130,7 @@ Jede Entität besitzt eine bestimmbare Anzahl an Attributen (Ausprägungen bzw. 
 
  In einer „eins zu eins“ Beziehung in relationalen Datenbanken ist jeder Datensatz in Tabelle A genau einem Datensatz in Tabelle B zugeordnet und umgekehrt. Diese Art von Beziehung sollte in der Modellierung vermieden werden, weil die meisten Informationen, die auf diese Weise in Beziehung stehen, sich in einer Tabelle befinden können. Eine 1:1 Beziehung verwendet man nur, um eine Tabelle aufgrund ihrer Komplexität zu teilen oder um einen Teil der Tabelle aus Gründen der Zugriffsrechte zu isolieren.
 
- \begin{figure}[h]
+ \begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/11.png}
     \caption{Eine Klasse hat einen Klassenvorstand. Ein Klassenvorstand hat eine Klasse}
@@ -142,7 +142,7 @@ Jede Entität besitzt eine bestimmbare Anzahl an Attributen (Ausprägungen bzw. 
  Eine „eins zu viele“ Beziehung in relationalen Datenbanken ist der häufigste Beziehungstyp in einer Datenbank. In einer 1:n Beziehung können einem Datensatz in Tabelle A mehrere passende Datensätze in Tabelle B zugeordnet sein, aber einem Datensatz in Tabelle B ist nie mehr als ein Datensatz in Tabelle A zugeordnet. Eine 1:n Beziehung wird mit einem Fremdschlüssel aufgelöst.
 Als Fremdschlüssel in der abhängigen Relation (n-Seite) wird der Primärschlüssel der unabhängigen Relation (1-Seite) eingefügt. Er verweist daher auf eine Zeile in dieser Relation.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/1n.png}
     \caption{Eine Klasse hat mehrere Schüler. Ein Schüler besucht 1 Klasse}
@@ -153,14 +153,14 @@ Als Fremdschlüssel in der abhängigen Relation (n-Seite) wird der Primärschlü
 
  Bei „viele zu viele“ Beziehung in relationalen Datenbanken können jedem Datensatz in Tabelle A mehrere passende Datensätze in Tabelle B zugeordnet sein und umgekehrt. Diese Beziehungen können nur über eine dritte Tabelle, eine Verbindungstabelle C, realisiert werden. Die Verbindungstabelle C enthält die beiden Primärschlüssel der Tabellen A und B als Fremdschlüssel. Der Primärschlüssel der Verbindungstabelle wird aus diesen beiden Fremdschlüsseln gebildet. Daraus folgt, dass eine m:n Beziehung in Wirklichkeit zwei 1:n Beziehungen sind.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/mn.png}
     \caption{Eine Klasse wird von mehreren Lehrern unterrichtet. Ein Lehrer unterrichtet mehrere Klassen.}
     \label{fig:modellierung:mn}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/autorbuch.png}
     \caption{Verbindungstabelle zwischen Autor und Buch}
@@ -185,7 +185,7 @@ Jede Zeile (auch Tupel genannt) in einer Tabelle ist ein Datensatz. Jedes Tupel 
 
 Das relationale Datenmodell erhält man, indem man das hierarchische Datenmodell mit dem Netzwerk-Datenmodell kombiniert. Ein Datenobjekt ist von einem oder mehreren Datenobjekten abhängig. Daraus ergeben sich mehrere Arten von Abhängigkeiten, die wir als Beziehungen bezeichnen.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/biblio.png}
     \caption{}
@@ -219,7 +219,7 @@ Gibt es in einer Tabelle keine eindeutigen Spalten bzw. Kombinationen aus Spalte
 
 Der Fremdschlüssel kann Bestandteil einer Tabelle in einer relationalen Datenbank sein. Dabei handelt es sich um eine Schlüsselspalte, die auf einen Primärschlüssel einer anderen oder aber derselben Tabelle verweist. In einfachen Worten: Als Fremdschlüssel wird eine Menge von Attributen bezeichnet, die in einer anderen Tabelle den Primärschlüssel bildet. 1:n Beziehungen werden beispielsweise mit einem Fremdschlüssel aufgelöst. 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/foreignkey.png}
     \caption{Foreign Key}
@@ -230,7 +230,7 @@ Der Fremdschlüssel kann Bestandteil einer Tabelle in einer relationalen Datenba
 
 Objekte sind modellhafte Abbilder der Wirklichkeit. Das Objekt-Datenmodell wird vor allem im Bereich der Softwareentwicklung eingesetzt. Ein wichtiges Prinzip beim Objektmodell ist die Vererbung, durch die ein effizienteres Programmieren möglich wird.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/objekt.png}
     \caption{Vererbung bei Objekten}
@@ -249,13 +249,13 @@ Mithilfe des Entity-Relationship-Modells soll eine Typisierung von Objekten, ihr
     \item \textbf{Attribut:} Eine Eigenschaft, die im Kontext zu einer Entität steht.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/erd.png}
     \caption{UML Darstellung}
     \label{fig:modellierung:erd}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/erde.png}
     \caption{Was ist was}
@@ -264,7 +264,7 @@ Mithilfe des Entity-Relationship-Modells soll eine Typisierung von Objekten, ihr
 
 \textit{Beispiel}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/bsp.png}
     \caption{Beispiel Darstellung}
@@ -278,7 +278,7 @@ Zur Wiederholung: Diese Notation nennt man Chen-Notation und ist ein gängiger S
 
 Ausgangspunkt ist ein vollständiges ER-Diagramm. Ziel ist die Darstellung des Sachverhaltes in Form von Relationen (Tabellen). Eine Tabelle ist eine Menge von Tupeln; ein Tupel ist eine Liste von Werten und entspricht einer Tabellenzeile.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/erdtor.png}
     \caption{ERD zu Relational}
@@ -320,7 +320,7 @@ Ausgangspunkt ist ein vollständiges ER-Diagramm. Ziel ist die Darstellung des S
 Im ERD können m:n - Beziehungen vorkommen, diese müssen jedoch spätestens bei der Überleitung in das Relationale Modell aufgelöst werden. Grund: Die Abbildung durch eine Menge von Fremdschlüsseln widerspricht der Forderung nach skalaren Attributen.
 Diese Auflösung erfolgt durch die Einführung einer neuen, sogenannten assoziativen Tabelle, die die Fremdschlüssel der beiden in Beziehung stehenden Entitäten enthält. (siehe \ref{fig:modellierung:mitproj})
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.3\textwidth]{Content/images/modellierung/mitarbeiterprojekt.png}
     \caption{Beispiel}
@@ -329,7 +329,7 @@ Diese Auflösung erfolgt durch die Einführung einer neuen, sogenannten assoziat
 
 Würde man nach der Methode der Überleitung für 1:n - Beziehungen vorgehen, so würde man eine der beiden Lösungen erhalten: (siehe \ref{fig:modellierung:mitproj2})
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/mitproj.png}
     \caption{Beispiel}
@@ -338,7 +338,7 @@ Würde man nach der Methode der Überleitung für 1:n - Beziehungen vorgehen, so
 
 Das neue „Attribut“ Mitarbeiter.Projekte müsste alle jene ProjektId’s aufnehmen, an denen der Mitarbeiter arbeitet – und umgekehrt für Projekt.Mitarbeiter. Weil das aber jeweils ganze Mengen sind, und solche Konstrukte in Relationalen Modell nicht definiert sind, führt man eine sogenannte assoziative Relation ein – also eine Relation, die eine Assoziation darstellt. (siehe \ref{fig:modellierung:mitproj3})
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.3\textwidth]{Content/images/modellierung/mitproj3.png}
     \caption{Beispiel}
@@ -347,7 +347,7 @@ Das neue „Attribut“ Mitarbeiter.Projekte müsste alle jene ProjektId’s auf
 
 Die Relation Arbeit enthält dann die Fremdschlüssel von Mitarbeiter und Projekt – diese können auch gleichzeitig die Primärschlüssel der neu gebildeten Relation sein (muss aber nicht): (siehe \ref{fig:modellierung:mitproj4})
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/mitproj4.png}
     \caption{Beispiel}
@@ -414,7 +414,7 @@ Bei diesem Modellierungs-Konstrukt werden gemeinsame Eigenschaften von Entitäte
     \end{itemize}
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/general.png}
     \caption{Generalisierung und Spezialisierung}
@@ -438,7 +438,7 @@ Spezialisierung: top-down.
 Bei einer Aggregation werden die Beziehungen zwischen 2 Entitäten (von außen) als eine einzige Entität gesehen, es können jedoch beide Entitäten eigenständig ohne der anderen existieren. 
 Beispiel: 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/spez.png}
     \caption{Generalisierung und Spezialisierung}
@@ -453,7 +453,7 @@ Ein Data-Dictionary – deutsch Datenwörterbuch, Datenkatalog – ist ein Katal
 
 Bei einer relationalen Datenbank ist ein Datenwörterbuch eine Menge von Tabellen und Views, die bei Abfragen nur gelesen werden (read-only). Datenbankobjekte, die dort nicht eingetragen sind, gibt es auch nicht. Die Informationen in einem Data Dictionary beinhalten die Namen der Tabellen und deren Spalten inklusive Datentypen und Längen. Es werden alle Datenbankobjekte gelistet - alle Tabellen, Sichten, Indices, Sequenzen, Constraints, Synonyme und mehr. Das Data-Dictionary ist wie eine Datenbank aufgebaut, enthält aber nicht Anwendungsdaten, sondern Metadaten, das heißt Daten, welche die Struktur der Anwendungsdaten beschreiben (und nicht den Inhalt selbst). Aufbau und Pflege eines solchen Datenkatalogs erfolgen üblicherweise über einen interaktiven Dialog oder mit Hilfe einer Datendefinitionssprache (DDL).
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/data.png}
     \caption{}
@@ -498,7 +498,7 @@ Das Star-Schema ist, wie der Name schon beschreibt, sternförmig aufgebaut und f
 Die Fakten (engl. Measures) in einem Star-Schema sind in diesem Modell das zentrale Element der Datenanalyse. Sie haben die Aufgabe wichtige Zusammenhänge in quantitativ messbarer und verdichteter Form wiederzugeben.
 Die Dimensionen (engl. Dimensions) in einem Star-Schema ermöglichen unterschiedliche Sichten auf die Fakten. Sie liefern einen fachlichen Bezug auf die quantitativen Werte in einem Sternschema.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/star.png}
     \caption{Aufbau}
@@ -534,7 +534,7 @@ Das Star-Schema setzt sich aus Fakten- und Dimensionstabellen zusammen. Die Fakt
     \item Eine Faktentabelle und wenige Dimensionstabellen    
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/star2.png}
     \caption{Beispiel}
@@ -547,7 +547,7 @@ Das Snowflake-Schema ist eine weitere Variante Informationen in mehrdimensionale
 Das Snowflake-Schema (Schneeflockenschema) ist eine Weiterführung des Sternschemas. Im Snowflake-Schema wird jede weitere Hierarchiestufe durch eine weitere Datenbanktabelle realisiert.
 Dadurch steigt die Anzahl von SQL Joins beim Schneeflockenschema im Gegensatz zum Sternschema linear mit der Anzahl der Aggregationspfade an.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/snow.png}
     \caption{Aufbau Snowflake Schema}
@@ -588,7 +588,7 @@ Jede weitere Hierarchiestufe wird in einer eigenen Tabelle angelegt und mittels 
 
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=.8\textwidth]{Content/images/modellierung/starb.png}
     \caption{Beispiel Snowflake}
