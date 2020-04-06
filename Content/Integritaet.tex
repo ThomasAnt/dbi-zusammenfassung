@@ -1,1 +1,183 @@
 \chapter{Datenintegrität}\label{cha:integrity}
+
+\section{Einleitung}
+Datenintegrität ist ein Begriff für die Qualität und Zuverlässigkeit von Daten eines Systems, dass Daten speichert, bearbeitet.
+Ziel ist es die Daten so zu erfassen wie beabsichtigt, also ungewollte oder falsche Änderungen zu unterbinden.
+Solche Datenfehler können durch Hardwarefehler, falsche Eingabe von Personen oder im Entferntesten auch durch Hackerangriffe entstehen.
+Im weiteren Sinne zählt zur Integrität auch der Schutz der Datenbank vor unberechtigtem Zugriff (Vertraulichkeit) und Veränderungen aber, dass ist Diskutierstoff.
+Datenbankintegrität wird durch sogenannte Integritätsbedingungen gewährleistet und nur wenn alle Integritätsbedingungen erfüllt und somit die Datenbank konsistent ist, spricht man von Datenbankintegrität.  
+Dieses doch recht große Thema kann man in 3 kleinere Aufteilen
+
+\begin{itemize}
+  \item Entity Integrity
+  \item Referential Integrity
+  \item Domain Integrity 
+\end{itemize}
+
+\section{Integrity Level}
+\subsection{Entity Integrity}
+
+Um Entity Integrity zu gewährleisten muss jeder Tabelleneintrag eindeutig sein. 
+Zum Beispiel wenn eine Entität mit nur Vornamen und Nachnamen existiert kann es leicht sein das zwei Personen genau den gleichen Eintrag haben weil sie den gleichen Namen haben. 
+Als Entwickler weiß man nun aber nicht ob es wirklich zwei Personen gibt oder ob die eine Person nur fälschlicherweise eingetragen wurde. 
+Die Lösung dieses Problems ist ein Primary Key. 
+Per Definition ist ein Primary Key UNIQUE und NOT NULL, weiters soll sich der Primary Key am besten nicht ändern, denn sollte er sich ändern meint man es gäbe zum Beispiel eine neue Person obwohl sich nur etwas geändert hat. 
+Wenn wir nun zu der Tabelle eine Id Spalte als Primary-Key hinzufügen, können die zwei Personen trotz gleichem Vor- und Nachnamen unterschieden werden. 
+Eine weitere Lösung ist eine 3. Spalte für die Sozialversicherungsnummer zu erstellen, hierbei spricht man von einem natural key im Gegensatz zum surrogate key im vorherigen Beispiel.
+z.B. jede Person hat eine eindeutige Sozialversicherungsnummer
+
+\subsection{Referential Integrity}
+
+Bei der referentiellen Integrität geht es um die Richtigkeit von Referenzen zwischen Tabellen. 
+Dies wird durch Foreign Keys gewährleistet. 
+Ohne Foreign Key Constraints kann man zum Beispiel bei einer Entität Kommentar die nur einen gedachten Verweis auf einen User hat, eine Kommentar speichern ohne User-Verweis. 
+Das bedeutet so viel wie das dieser Kommentar von niemanden geschrieben worden ist. 
+Außerdem kann bei einer relation die nicht mit Foreign key gesicherten ist auch der referenzierte User einfach gelöscht werden und der Kommentar steht wieder ohne Autor da.
+
+\subsection{Domain Integrity}
+
+Auf Spalten-Ebene spricht man nun von Domain Integrität. 
+Es soll also verhindert werden, dass bei einer Spalte für Telefonnummern Zeichen gespeichert werden oder eine ungültige Telefonnummer die z.B. nur aus 2 Zahlen besteht. 
+Das simpelste Konzept um dies zu verhindern sind Datentypen. 
+Wenn es aber komplexer wird müssen CHECK-Constraints oder Trigger herhalten.
+
+\section{Integritätsbedingungen}
+
+Unter Integritätsbedingungen versteht man generell alle Vorgaben, die die Datenbank erfüllen muss. 
+Ein Beispiel wäre: Falls der Student exmatrikuliert, findet auch die Prüfung nicht statt (referentielle Integrität). 
+Um, so eine Bedingung zu erfüllen werden Datenbank-Constraints verwenden, von NOT NULL und Check Constraints über Unique bis hin zu Primary Key und Foreign key.
+Man Unterscheidet Statische und dynamische Bedingungen wobei man bei statischen Bedingungen von Zustandsbedingungen spricht also z.B. das Gehalt darf nicht größer als 500.000 sein. 
+Und bei dynamischen Bedingungen werden als Übergangsbedingungen bezeichnet, ein Beispiel hierfür wäre das Gehalt eines Angestellten darf nicht verkleinert werden.
+Integritätsbedingungen können zu Unterschiedlichen Zeitpunkten geprüft werden. Entweder IMMEDIATE oder DEFERRED, diese Keywords müssen beim Erstellen des Constraints mitgegeben werden und bedeuten:
+\newline
+IMMEDIATE	...	  die Integritätsbedingung bewirkt die sofortige Überprüfung der Tabelle.
+\newline
+DEFERRED 	...	  die Integritätsbedingung wird erst beim Commit überprüft
+
+\section{Datenbank Constraints}
+
+\subsection{PRIMARY KEY}
+
+Jeder Datensatz wird eindeutig ansprechbar.
+
+\begin{lstlisting}
+CREATE TABLE *table_name* (
+  *spalten_name* int PRIMARY KEY
+);
+\end{lstlisting}
+
+
+\begin{lstlisting}
+  Alter table *table* add CONSTRAINT *constraint_name* primary Key (*column*);
+\end{lstlisting}
+
+
+\subsection{FOREIGN KEY}
+
+Relationen werden ermöglicht.
+
+\begin{lstlisting}
+CREATE TABLE *table* (
+    *column* *data_type* FOREIGN KEY REFERENCES *second_table*(*second_table_column*)
+);
+\end{lstlisting}
+
+
+\begin{lstlisting}
+  ALTER TABLE *table* ADD FOREIGN KEY (*column*) REFERENCES *second_table*(*second_table_column*);
+\end{lstlisting}
+
+\hfill\break
+um Tabellen mit darauf zugewiesenen Foreign keys zu löschen gibt es folgende Strategien (FS ... Fremd Schlüssel):
+
+\begin{itemize}
+  \item RESTRICT ... Operation wird nur ausgeführt, wenn keine zugehörigen Sätze (FS-Werte) vorhanden sind
+  \item NO ACTION ... Wird aus der Vatertabelle etwas gelöscht, passiert in der abhängigen Tabelle nichts.
+  \item CASCADE
+  \begin{itemize}
+    \item DELETE Cascade ... referentielle Tupel werden gelöscht
+    \item UPDATE Cascade ... FS in referenzierenden Tupel wird geändert
+  \end{itemize}
+  \item SET NULL ... FS wird in den zugehörigen Sätzen auf Null gesetzt
+  \item SET DEFAULT ... FS wird in den zugehörigen Sätzen auf den Default-Wert gesetzt
+\end{itemize}
+
+
+\begin{lstlisting}
+  ALTER TABLE *table* add CONSTRAINT *constraint_name* FOREIGN KEY
+  [index_name] (col_name, ...)
+  REFERENCES tbl_name (col_name,...)
+  [ON DELETE reference_option]
+  [ON UPDATE reference_option]
+
+reference_option:
+  RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
+
+\end{lstlisting}
+
+\subsection{UNIQUE}
+Es wird kein Wert doppelt abgespeichert.
+
+\begin{lstlisting}
+CREATE TABLE *table_name* (
+  *column_name* int UNIQUE
+);
+\end{lstlisting}
+
+
+\begin{lstlisting}
+  ALTER TABLE *table* ADD CONSTRAINT *constraint_name*UNIQUE (*column*);
+\end{lstlisting}
+
+\subsection{CHECK}
+
+Fehleingaben werden verhindert durch Überprüfungsregeln.
+
+\begin{lstlisting}
+CREATE TABLE *table_name* (
+  *spalten_name* int CHECK (*spalten_name*>=18 AND *spalten_name*='asdf')
+);
+\end{lstlisting}
+
+
+\begin{lstlisting}
+ALTER TABLE *table* ADD CONSTRAINT *constraint_name* CHECK (*column*>=18 AND *column*='String');
+\end{lstlisting}
+
+\subsection{NOT NULL}
+
+Verbot von NULL Werten
+
+\begin{lstlisting}
+CREATE TABLE *table* (
+  *column* *data_type* NOT NULL,
+);
+\end{lstlisting}
+
+
+\begin{lstlisting}
+ALTER TABLE *table* MODIFY (*column* NOT NULL);
+\end{lstlisting}
+
+\section{ACID}
+
+Um Datenbankanomalien zu vermeiden, müssen die Transaktionen die ACID anforderungen befolgen.
+
+\begin{itemize}
+  \item Atomicity
+  \begin{itemize}
+    \item Eine Transaktion ist eine Folge von Datenbank-Operationen, die entweder ganz oder gar nicht ausgeführt wird (Alles-oder-nichts-Eigenschaft).
+  \end{itemize}
+  \item Consistency
+  \begin{itemize}
+    \item Konsistenz heißt, dass eine Transaktion nach Beendigung einen konsistenten Datenbankzustand hinterlässt, falls die Datenbank davor auch konsistent war
+  \end{itemize}
+  \item Isolation 
+  \begin{itemize}
+    \item Durch das Prinzip der Isolation wird verhindert/eingeschränkt, dass sich nebenläufig in Ausführung befindliche Transaktionen gegenseitig beeinflussen.
+  \end{itemize}
+  \item Durability
+  \begin{itemize}
+    \item Der Begriff Dauerhaftigkeit sagt aus, dass Daten nach dem erfolgreichen Abschluss einer Transaktion garantiert dauerhaft in der Datenbank gespeichert sind.
+  \end{itemize}
+\end{itemize}
